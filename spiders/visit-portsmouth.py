@@ -21,9 +21,9 @@ class VisitPortsmouthCrawler(BaseSpider):
         for events in self._parse_all_events():
             for event in events:
                 self._parse_events_page(event)
-        
+                
     def _parse_events_page(self, event):
-        # print(json.dumps(event, indent=4))
+        print(json.dumps(event, indent=4))
         print(event["title"])
     
     @staticmethod
@@ -35,8 +35,8 @@ class VisitPortsmouthCrawler(BaseSpider):
                 {
                     "categories.catId": {
                         "$in": [
-            "10731","10741","10751","10761","10771","10781","10791","10801","10811",
-            "10821","10831","10841","10851","10861","10871","10881","10891","11651",
+                          "10731","10741","10751","10761","10771","10781","10791","10801","10811",
+                          "10821","10831","10841","10851","10861","10871","10881","10891","11651",
             "11661","11671","11701","11711","11721","11731","11741","11751","11761",
             "11771","11781","11791","11801","11811","11821","11831","11841","11851",
             "11861","11871","12843","12853","13173","13413","13423","13433","13443",
