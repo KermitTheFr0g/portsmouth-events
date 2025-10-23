@@ -15,17 +15,24 @@ class VisitPortsmouthCrawler(BaseSpider):
     
     def __init__(self):
         self.session = requests.Session()
+        self.token = "62d479e8cf75a7c2f31c251e4709d55e"
         super().__init__(self.NAME, self.session)
         
     def crawl(self):
         for events in self._parse_all_events():
             for event in events:
-                self._parse_events_page(event)
+               self._parse_events_page(event)
                 
     def _parse_events_page(self, event):
-        print(json.dumps(event, indent=4))
-        print(event["title"])
-    
+         print(event["id"])
+         print(event["title"])
+         print(event["udfs_object"]["2"]["value"])
+         print(event["longitude"], event["latitude"])
+         print(event["startDate"])
+         print(event["endDate"])
+         print(event["media_raw"][0]["mediaurl"])
+         print(event["absoluteUrl"])
+
     @staticmethod
     def _event_query(limit: int, skip: int) -> json:
         query = {
@@ -55,8 +62,8 @@ class VisitPortsmouthCrawler(BaseSpider):
       }
     ],
     "date_range": {
-      "start": {"$date": "2025-10-14T23:00:00.000Z"},
-      "end": {"$date": "2025-11-15T00:00:00.000Z"}
+      "start": {"$date": "2025-10-22T23:00:00.000Z"},
+      "end": {"$date": "2025-11-22T00:00:00.000Z"}
     }
   },
   "options": {
@@ -92,7 +99,7 @@ class VisitPortsmouthCrawler(BaseSpider):
         while True:
             query = self._event_query(page_size, skip)
             encoded_query = urllib.parse.quote(json.dumps(query))
-            url = f"{self.BASE_URL}/includes/rest_v2/plugins_events_events_by_date/find/?json={encoded_query}&token=adefb5507e6ca1d2bb0d62283e5a2a7c"
+            url = f"{self.BASE_URL}/includes/rest_v2/plugins_events_events_by_date/find/?json={encoded_query}&token={self.token}"
             response = self.fetch(url)
             events = response['docs']['docs']
             if doc_amount is None:

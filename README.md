@@ -7,3 +7,14 @@ Scraping all events in Portsmouth, and a landing page to show all of these.
 - [ ] https://www.skiddle.com/whats-on/Portsmouth/
 - [ ] https://www.port.ac.uk/news-events-and-blogs/events?page=2#top-of-site
 - [ ] https://myport.port.ac.uk/news-events-and-blogs/events?utm_source=chatgpt.com
+
+
+# Structure of an event
+- Event ID
+- Title
+- Description
+- Location
+- Date: Start and end
+- Image
+- Categories
+- URL
